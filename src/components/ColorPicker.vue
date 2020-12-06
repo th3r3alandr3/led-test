@@ -1,20 +1,11 @@
 <template>
-  <!--  <section class="section">-->
-  <!--    <div class="columns">-->
-  <!--      <div class="column mx-3"  v-bind:style="{ background: color }">-->
-  <!--        <figure class="image is-96x96"></figure>-->
-  <!--      </div>-->
-  <!--      <div class="column">-->
-  <!--        <b-button class="is-fullwidth" icon-left="sync" label="Übernehmen" type="is-primary" @click="notImplemented()"></b-button>-->
-  <!--      </div>-->
-  <!--      <div class="column">-->
   <b-tabs v-model="activeTab" :expanded="true">
 
     <b-tab-item label="Slider" icon="sort-variant">
       <div class="columns is-multiline mt-2">
-        <b-slider class="column is-full-mobile is-offset-3 is-6" type="is-danger" v-model="slider.r" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
-        <b-slider class="column is-full-mobile is-offset-3 is-6" type="is-success" v-model="slider.g" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
-        <b-slider class="column is-full-mobile is-offset-3 is-6" type="is-info" v-model="slider.b" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
+        <b-slider class="column is-full" type="is-danger" v-model="slider.r" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
+        <b-slider class="column is-full" type="is-success" v-model="slider.g" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
+        <b-slider class="column is-full" type="is-info" v-model="slider.b" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
       </div>
     </b-tab-item>
 
@@ -34,9 +25,6 @@
       </div>
     </b-tab-item>
   </b-tabs>
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </section>-->
 </template>
 
 <script>

@@ -26,7 +26,7 @@
         <b-button class="is-fullwidth" icon-left="plus" label="Hinzufügen" @click="isColorPickerModalActive = true" type="is-success" outlined></b-button>
       </div>
       <div class="column is-full">
-        <b-tabs expanded>
+        <b-tabs v-model="activeTab" expanded>
           <b-tab-item label="1:5">
             <div class="columns is-multiline is-mobile leds-padding">
               <div class="column is-1-mobile is-flex is-justify-content-center px-1" v-for="(led, index) in leds" v-bind:key="index">
@@ -94,6 +94,7 @@ export default {
   },
   data() {
     return {
+      activeTab: 0,
       color: '#FFFFFF',
       leds: null,
       ledsFull: null,

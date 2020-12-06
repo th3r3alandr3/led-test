@@ -2,6 +2,8 @@ $mdi-font-path: '~@mdi/font/fonts';
 @import '~@mdi/font/scss/materialdesignicons';
 @import "~bulma/sass/utilities/_all";
 @import "~bulma-prefers-dark/sass/utilities/_all";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 
 // Set your colors
 $primary: #7957d5;
@@ -76,20 +78,27 @@ $colors: mergeColorMaps(
 
 // Links
 $link: $primary;
+$link-active: $primary;
+$link-active-dark: $primary;
 $link-dark: $link;
 $link-invert: $primary-invert;
 $link-invert-dark: $link-invert;
 $link-focus-border: $primary;
 
+$navbar-item-active-color-dark: $primary;
 $modal-card-body-background-color-dark: #282828;
 $modal-background-background-color-dark: rgba(10, 10, 10, 0.86);
 
 html,
 body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+
+#app {
+  font-family: 'Roboto', sans-serif;
 }
 
 .slide-enter-active,

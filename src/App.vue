@@ -1,6 +1,12 @@
 <template>
   <div>
-    <b-navbar :shadow="true" :spaced="true" :fixed-top="true" wrapper-class="container">
+    <b-navbar
+        :shadow="true"
+        :spaced="true"
+        :fixed-top="true"
+        :close-on-click="true"
+        wrapper-class="container"
+    >
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <div class="title">
@@ -12,22 +18,24 @@
         </b-navbar-item>
       </template>
       <template slot="end">
-        <b-navbar-item tag="router-link" :to="{ path: '/' }" :active="true">
-          <b-icon icon="led-strip" type="is-success"></b-icon>
-          <span class="ml-1">Alle Leds Steuern</span>
+        <b-navbar-item tag="router-link" :to="{ path: '/' }">
+          <b-icon icon="led-strip" type="is-success" class="mr-2"></b-icon>
+          Alle Leds Steuern
         </b-navbar-item>
         <b-navbar-item tag="router-link" :to="{ path: '/einzelnd' }">
-          <b-icon icon="led-outline" type="is-info"></b-icon>
-          <span class="ml-1">Einzelne Led Steuern</span>
+          <b-icon icon="led-outline" type="is-info" class="mr-2"></b-icon>
+          Einzelne Led Steuern
         </b-navbar-item>
         <b-navbar-item tag="router-link" :to="{ path: '/effekte' }">
-          <b-icon icon="looks" type="is-danger"></b-icon>
-          <span class="ml-1">Effekte</span>
+          <b-icon icon="looks" type="is-danger" class="mr-2"></b-icon>
+          Effekte
         </b-navbar-item>
       </template>
     </b-navbar>
     <div class="container" id="app">
-      <router-view/>
+      <vue-page-transition name="fade-in-up">
+        <router-view/>
+      </vue-page-transition>
       <vue-progress-bar/>
     </div>
   </div>

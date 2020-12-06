@@ -1,15 +1,13 @@
 <template>
   <section class="section">
     <div class="columns is-multiline">
-      <div class="column is-full">
+      <div class="column is-full-mobile is-6">
         <div v-bind:style="{ background: color }">
           <figure class="image is-96x96"></figure>
         </div>
+        <b-button class="is-fullwidth mt-4 pt-2" icon-left="sync" label="Übernehmen" type="is-primary" @click="notImplemented()"></b-button>
       </div>
-      <div class="column is-full">
-        <b-button class="is-fullwidth" icon-left="sync" label="Übernehmen" type="is-primary" @click="notImplemented()"></b-button>
-      </div>
-      <div class="column is-full">
+      <div class="column is-full-mobile  is-6">
         <color-picker v-model="color"/>
       </div>
     </div>
