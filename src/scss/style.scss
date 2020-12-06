@@ -81,6 +81,66 @@ $link-invert: $primary-invert;
 $link-invert-dark: $link-invert;
 $link-focus-border: $primary;
 
+$modal-card-body-background-color-dark: #282828;
+$modal-background-background-color-dark: rgba(10, 10, 10, 0.86);
+
+html,
+body {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 1s, transform 1s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(30%);
+}
+
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: 0.4s;
+  opacity: 1;
+}
+
+.page-fade-enter,
+.page-fade-leave-to {
+  opacity: 0;
+}
+
+.color-modal-body {
+  max-height: 50vh;
+}
+
+.led {
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+}
+
+
+.leds-padding {
+  padding: 1.25rem 2.25rem 1.25rem 2.25rem;
+}
+
+.notification.with-handle {
+  padding: 1.25rem 2.25rem 1.25rem 2.25rem;
+
+  .handle {
+    position: absolute;
+    padding: 0;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

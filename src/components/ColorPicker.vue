@@ -1,42 +1,42 @@
 <template>
-  <section class="section">
-    <div class="columns">
-      <div class="column mx-3"  v-bind:style="{ background: color }">
-        <figure class="image is-96x96"></figure>
-      </div>
-      <div class="column">
-        <b-button class="is-fullwidth" icon-left="sync" label="Übernehmen" type="is-primary" @click="notImplemented()"></b-button>
-      </div>
-      <div class="column">
-        <b-tabs v-model="activeTab" :expanded="true">
+  <!--  <section class="section">-->
+  <!--    <div class="columns">-->
+  <!--      <div class="column mx-3"  v-bind:style="{ background: color }">-->
+  <!--        <figure class="image is-96x96"></figure>-->
+  <!--      </div>-->
+  <!--      <div class="column">-->
+  <!--        <b-button class="is-fullwidth" icon-left="sync" label="Übernehmen" type="is-primary" @click="notImplemented()"></b-button>-->
+  <!--      </div>-->
+  <!--      <div class="column">-->
+  <b-tabs v-model="activeTab" :expanded="true">
 
-          <b-tab-item label="Slider" icon="sort-variant">
-            <div class="columns">
-              <b-slider class="column" type="is-danger" v-model="slider.r" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
-              <b-slider class="column" type="is-success" v-model="slider.g" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
-              <b-slider class="column" type="is-info" v-model="slider.b" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
-            </div>
-          </b-tab-item>
-
-          <b-tab-item label="Picker" icon="eyedropper-variant">
-            <div class="columns">
-              <div class="column is-flex is-justify-content-center">
-                <color-pickers v-model="color" :startColor="color"></color-pickers>
-              </div>
-            </div>
-          </b-tab-item>
-
-          <b-tab-item label="Palette" icon="palette">
-            <div class="columns is-mobile is-multiline">
-              <div class="column is-4 is-flex is-justify-content-center" v-for="c in colors" :key="c">
-                <figure class="image is-64x64" :style="[ {background: c}, c.toUpperCase() === color ? {'box-shadow': '0 0 20px ' + c} : '' ]" @click="setColor(c)"></figure>
-              </div>
-            </div>
-          </b-tab-item>
-        </b-tabs>
+    <b-tab-item label="Slider" icon="sort-variant">
+      <div class="columns is-multiline mt-2">
+        <b-slider class="column is-full-mobile is-offset-3 is-6" type="is-danger" v-model="slider.r" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
+        <b-slider class="column is-full-mobile is-offset-3 is-6" type="is-success" v-model="slider.g" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
+        <b-slider class="column is-full-mobile is-offset-3 is-6" type="is-info" v-model="slider.b" :max="255" :tooltip="tooltip" :rounded="rounded"></b-slider>
       </div>
-    </div>
-  </section>
+    </b-tab-item>
+
+    <b-tab-item label="Picker" icon="eyedropper-variant">
+      <div class="columns">
+        <div class="column is-flex is-justify-content-center mt-2">
+          <color-pickers v-model="color" :startColor="color"></color-pickers>
+        </div>
+      </div>
+    </b-tab-item>
+
+    <b-tab-item label="Palette" icon="palette">
+      <div class="columns is-mobile is-multiline">
+        <div class="column is-4 is-flex is-justify-content-center mt-2" v-for="c in colors" :key="c">
+          <figure class="image is-64x64" :style="[ {background: c}, c.toUpperCase() === color ? {'box-shadow': '0 0 20px ' + c} : '' ]" @click="setColor(c)"></figure>
+        </div>
+      </div>
+    </b-tab-item>
+  </b-tabs>
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </section>-->
 </template>
 
 <script>
@@ -80,16 +80,28 @@ export default {
   watch: {
     'slider.r': function () {
       this.color = this.getColor();
+      this.colorChange(this.color)
     },
     'slider.g': function () {
       this.color = this.getColor();
+      this.colorChange(this.color)
     },
     'slider.b': function () {
       this.color = this.getColor();
+      this.colorChange(this.color)
     },
-    color: function (value) {
-      this.setColor(value);
+    color: function (color) {
+      this.setColor(color);
+    },
+    value: function (value) {
+      this.color = value;
     }
+  },
+  props: {
+    value: {
+      type: String,
+      default: '#FFFFFF',
+    },
   },
   methods: {
     getColor() {
@@ -118,18 +130,18 @@ export default {
       return `#${(Number(`0x1${color}`) ^ 0xFFFFFF).toString(16).substr(1).toUpperCase()}`;
     },
     setColor(color) {
+      this.colorChange(color)
       const hexColor = color.replace("#", "");
       this.slider.r = parseInt(hexColor.substr(0, 2), 16);
       this.slider.g = parseInt(hexColor.substr(2, 2), 16);
       this.slider.b = parseInt(hexColor.substr(4, 2), 16);
     },
-    notImplemented() {
-      this.$buefy.toast.open({
-        duration: 5000,
-        message: `Ich habe noch keine Funktion :(`,
-        type: 'is-info'
-      })
-    }
+    colorChange(color) {
+      this.$emit("input", color)
+    },
+  },
+  created() {
+    this.color = this.value;
   },
 }
 </script>
